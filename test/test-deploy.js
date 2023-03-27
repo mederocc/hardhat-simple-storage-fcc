@@ -22,4 +22,21 @@ describe('SimpleStorage', function () {
     const currentValue = await simpleStorage.retrieve();
     assert.equal(currentValue, expectedValue);
   });
+
+  describe('addPerson()', () => {
+    it('should add a person to the people array and the nameToFavoriteNumber mapping', async () => {
+      const name = 'Alice';
+      const favoriteNumber = 23;
+      await simpleStorage.addPerson(name, favoriteNumber);
+
+      const people = await simpleStorage.people(0);
+      assert.equal(people.name, name);
+      assert.equal(people.favoriteNumber, favoriteNumber);
+
+      const storedFavoriteNumber = await simpleStorage.nameToFavoriteNumber(
+        name
+      );
+      assert.equal(storedFavoriteNumber, favoriteNumber);
+    });
+  });
 });

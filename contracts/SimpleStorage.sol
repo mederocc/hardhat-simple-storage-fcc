@@ -22,10 +22,6 @@ contract SimpleStorage {
         favoriteNumber = _favoriteNumber;
     }
 
-    function increment() public {
-        favoriteNumber++;
-    }
-
     function retrieve() public view returns (uint256) {
         return favoriteNumber;
     }
